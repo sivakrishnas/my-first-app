@@ -1,0 +1,58 @@
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top" aria-label="bookmyshow home"><span>book</span><strong>my</strong><span>show</span></a>
+    <label class="search-box">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input type="search" placeholder="Search for Movies, Events, Plays, Sports and Activities" [value]="searchQuery()" (input)="searchQuery.set($any($event.target).value)" />
+    </label>
+    <button class="city-button" type="button" (click)="setCity()">{{ selectedCity() }} <span aria-hidden="true">⌄</span></button>
+    <button class="sign-in" type="button">Sign in</button>
+    <button class="menu-button" type="button" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="category-nav" aria-label="Primary navigation">
+  <div class="nav-inner">
+    <div class="main-links">
+      @for (category of ['Movies', 'Stream', 'Events', 'Plays', 'Sports', 'Activities']; track category) {
+        <button type="button" [class.active]="selectedCategory() === category" (click)="selectedCategory.set(category)">{{ category }}</button>
+      }
+    </div>
+    <div class="utility-links"><a href="#events">ListYourShow</a><a href="#corporates">Corporates</a><a href="#offers">Offers</a><a href="#gifts">Gift Cards</a></div>
+  </div>
+</nav>
+
+<main id="top">
+  <section class="hero-wrap" aria-label="Featured events">
+    <div class="hero" [style.background-image]="'linear-gradient(90deg, rgba(7, 10, 31, .96) 0%, rgba(7, 10, 31, .6) 39%, rgba(7, 10, 31, .12) 100%), url(' + banners[activeBanner()].image + ')'">
+      <div class="hero-copy">
+        <p class="eyebrow">{{ banners[activeBanner()].eyebrow }}</p>
+        <h1>{{ banners[activeBanner()].title }}</h1>
+        <p class="hero-detail">{{ banners[activeBanner()].detail }}</p>
+        <div class="hero-meta"><span>{{ banners[activeBanner()].date }}</span><i></i><span>{{ banners[activeBanner()].place }}</span></div>
+        <button class="primary-button" type="button">Book now <span aria-hidden="true">↗</span></button>
+      </div>
+      <button class="slider-arrow previous" type="button" aria-label="Previous banner" (click)="previousBanner()">‹</button>
+      <button class="slider-arrow next" type="button" aria-label="Next banner" (click)="nextBanner()">›</button>
+      <div class="dots" aria-label="Banner slides">
+        @for (banner of banners; track banner.title; let index = $index) { <button type="button" [class.selected]="activeBanner() === index" [attr.aria-label]="'Show slide ' + (index + 1)" (click)="activeBanner.set(index)"></button> }
+      </div>
+    </div>
+  </section>
+
+  <section class="content-section" id="movies">
+    @for (row of movieRows; track row.title) {
+      <div class="row-heading"><h2>{{ row.title }}</h2><a href="#all">{{ row.action }} <span aria-hidden="true">›</span></a></div>
+      <div class="movie-grid">
+        @for (movie of row.movies; track movie.title) {
+          <article class="movie-card">
+            <div class="poster-wrap"><img [src]="movie.image" [alt]="movie.title + ' poster'" loading="lazy" /><button class="heart-button" type="button" [class.liked]="isLiked(movie.title)" [attr.aria-label]="isLiked(movie.title) ? 'Remove ' + movie.title + ' from favourites' : 'Add ' + movie.title + ' to favourites'" (click)="toggleLike(movie.title)">{{ isLiked(movie.title) ? '♥' : '♡' }}</button><div class="rating"><span>★</span> {{ movie.rating }}</div></div>
+            <h3>{{ movie.title }}</h3><p>{{ movie.language }} <span>•</span> {{ movie.genre }}</p>
+          </article>
+        }
+      </div>
+    }
+  </section>
+</main>
+
+<footer><a class="brand" href="#top"><span>book</span><strong>my</strong><span>show</span></a><span>Made for your next great night out.</span><span>© 2026 BMS</span></footer>
