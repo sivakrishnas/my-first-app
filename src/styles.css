@@ -2,3 +2,44 @@
 html { scroll-behavior: smooth; }
 body { margin: 0; background: #f7f7f8; }
 button, input { font-family: inherit; }
+
+/* Desktop and tablet layout for the Fixly service catalogue. */
+@media (min-width: 700px) {
+  body { background: #edf2ee; }
+  .screen {
+    max-width: none !important;
+    width: 100%;
+    min-height: 100vh;
+    padding: 26px clamp(32px, 6vw, 120px) 48px !important;
+    box-shadow: none;
+  }
+  .top { margin-bottom: 30px !important; }
+  .brand { font-size: 29px !important; }
+  .hero { min-height: 270px; padding: 48px !important; border-radius: 28px !important; }
+  .hero:after { font-size: 225px !important; right: 50px !important; bottom: -78px !important; }
+  .hero h1 { font-size: 44px !important; max-width: 520px !important; }
+  .hero p { font-size: 16px !important; max-width: 430px !important; }
+  .search { max-width: 510px; margin: 22px 0 30px !important; }
+  .section-head { margin-top: 32px !important; }
+  .section-head h2 { font-size: 23px !important; }
+  .categories { grid-template-columns: repeat(6, 1fr) !important; gap: 16px !important; }
+  .category { min-height: 145px !important; padding: 22px 16px !important; border-radius: 20px !important; transition: transform .2s ease, box-shadow .2s ease; }
+  .category:hover { transform: translateY(-4px); box-shadow: 0 12px 22px rgba(28, 67, 48, .12); }
+  .category span { font-size: 32px !important; }
+  .category strong { font-size: 14px !important; }
+  .trust { max-width: 670px; gap: 14px !important; }
+  .trust div { padding: 16px !important; font-size: 12px !important; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px !important; }
+  .card { min-height: 122px; padding: 19px !important; border-radius: 19px !important; }
+  .card-icon { width: 56px !important; height: 56px !important; font-size: 26px !important; }
+  .card h3 { font-size: 16px !important; }
+  .card p { font-size: 13px !important; }
+  .bottom-nav { display: none !important; }
+  .site-footer { margin: 48px 0 -48px !important; padding: 30px 24px !important; border-radius: 18px 18px 0 0; }
+}
+
+@media (min-width: 1050px) {
+  .screen { padding-left: clamp(48px, 8vw, 160px) !important; padding-right: clamp(48px, 8vw, 160px) !important; }
+  .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .bottom-nav { padding-left: clamp(48px, 8vw, 160px) !important; padding-right: clamp(48px, 8vw, 160px) !important; }
+}
