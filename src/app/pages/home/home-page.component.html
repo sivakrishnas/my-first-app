@@ -1,0 +1,39 @@
+<main class="screen">
+  <app-site-header active="home" />
+
+  <section class="hero">
+    <p class="eyebrow">Home services, made easy</p>
+    <h1>Reliable help for every corner of home.</h1>
+    <p>Explore local services with clear, reasonable starting prices.</p>
+  </section>
+
+  <div class="search">⌕ &nbsp; Search electrical, plumbing, cleaning...</div>
+
+  <div class="section-head"><h2>What do you need?</h2><a routerLink="/services/Electrical">Explore</a></div>
+  <section class="categories">
+    @for (category of catalog.categories; track category.name) {
+      <a class="category" [style.background]="category.color" [routerLink]="['/services', category.name]">
+        <span>{{ category.icon }}</span><strong>{{ category.name }}</strong>
+      </a>
+    }
+  </section>
+
+  <section class="trust">
+    <div><b>4.8/5</b>customer rating</div><div><b>10k+</b>verified pros</div><div><b>Upfront</b>starting prices</div>
+  </section>
+
+  <div class="section-head"><h2>Everyday services</h2></div>
+  <section class="cards">
+    @for (service of services; track service.id) {
+      <article class="card">
+        <div class="card-icon">{{ service.icon }}</div>
+        <div class="card-main"><h3>{{ service.name }}</h3><p><span class="rating">★ {{ service.rating }}</span> · {{ service.duration }}</p><p class="price">From ₹{{ service.price }}</p></div>
+        <span class="price">₹{{ service.price }}</span>
+      </article>
+    }
+  </section>
+
+  <app-site-footer />
+</main>
+
+<app-mobile-navigation active="home" />

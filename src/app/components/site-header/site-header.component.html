@@ -1,0 +1,9 @@
+<header class="site-header">
+  @if (showBack) { <a class="back" routerLink="/"><span>←</span> Back</a> }
+  <a class="brand" routerLink="/">fix<b>ly</b></a>
+  <nav class="top-nav" aria-label="Primary navigation">
+    <a [class.active]="active === 'home'" routerLink="/">Home</a>
+    <a [class.active]="active === 'services'" routerLink="/services/Electrical">Services</a>
+    @if (!showBack) { <a routerLink="/">Discover</a> }
+  </nav>
+</header>

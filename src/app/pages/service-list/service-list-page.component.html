@@ -1,0 +1,24 @@
+<main class="screen">
+  <app-site-header active="services" [showBack]="true" />
+  <h1 class="title">{{ category }}</h1>
+  <p class="sub">A simple catalog of everyday services and their transparent starting prices.</p>
+  <section class="cards">
+    @for (service of services; track service.id) {
+      <article class="card">
+        <div class="card-icon">{{ service.icon }}</div>
+        <div class="card-main">
+          <h3>{{ service.name }}</h3><p>{{ service.description }}</p>
+          <p><span class="rating">★ {{ service.rating }}</span> · {{ service.reviews }} reviews</p>
+          <p class="price">From ₹{{ service.price }}</p>
+        </div>
+        <span class="price">₹{{ service.price }}</span>
+      </article>
+    } @empty {
+      <p class="sub">Services for this category are coming soon.</p>
+    }
+  </section>
+
+  <app-site-footer />
+</main>
+
+<app-mobile-navigation active="services" />
